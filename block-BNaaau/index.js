@@ -88,7 +88,7 @@ let nodeServer7 = http.createServer(handleNode7);
 function handleNode7(req,res){
     res.setHeader('Content-Type', 'application/json');
     // res.writeHead(200, {"Content-type": "application/json"})
-    res.end(`{success: true, message: 'Welcome to Nodejs'}`);
+    res.end(JSON.stringify({success: true, message: 'Welcome to Nodejs'}));
 }
 nodeServer7.listen(8888, ()=> {
     // console.log("Server is listening on 8888");
@@ -155,9 +155,9 @@ nodeServer10.listen(2346, ()=> {
 let nodeServer11 = http.createServer(handleNode11);
 
 function handleNode11(req,res){
-    let str= url.parse(req.url);
-    res.writeHead(200, {"Content-type": "text/plain"})
-    res.end(str.query);
+    let str= url.parse(req.url, true);
+    res.writeHead(200, {"Content-type": "application/json"})
+    res.end(JSON.stringify(str.query));
 }
 nodeServer11.listen(1234, ()=> {
     console.log("Server is listening on 1234");
